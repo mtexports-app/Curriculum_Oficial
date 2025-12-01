@@ -12,6 +12,7 @@ import {
     FaLightbulb,
     FaUsers
 } from 'react-icons/fa';
+
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function DonationsPage() {
@@ -122,8 +123,8 @@ export default function DonationsPage() {
                                         href={option.stripe_link}
                                         target="_blank"
                                         className={`w-full py-4 rounded-xl font-bold transition-all duration-300 flex items-center justify-center gap-2 ${option.isRecommended
-                                                ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-lg hover:shadow-orange-500/25 hover:scale-105'
-                                                : 'bg-white/10 hover:bg-white text-white hover:text-black'
+                                            ? 'bg-gradient-to-r from-orange-500 to-red-600 text-white shadow-lg hover:shadow-orange-500/25 hover:scale-105'
+                                            : 'bg-white/10 hover:bg-white text-white hover:text-black'
                                             }`}
                                     >
                                         {t.donate_page.donate_btn}
