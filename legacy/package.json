@@ -1,0 +1,8 @@
+{
+  "devDependencies": {
+    "video.js": "^8.0.4"
+  },
+  "dependencies": {
+    "swiper": "^9.1.1"
+  }
+}
