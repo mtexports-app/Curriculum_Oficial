@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: curriculum-oficial
+  namespace: wordpress-sites
+  labels:
+    app: curriculum-oficial
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: curriculum-oficial
+  template:
+    metadata:
+      labels:
+        app: curriculum-oficial
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: curriculum-oficial
+          image: ghcr.io/christianbarillas/curriculum_oficial:latest # Placeholder, updated by CI
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: curriculum-oficial
+  namespace: wordpress-sites
+spec:
+  selector:
+    app: curriculum-oficial
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000

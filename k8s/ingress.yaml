@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: curriculum-oficial-ingress
+  namespace: wordpress-sites
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - christianbarillas.mtexports.app
+      secretName: christianbarillas-tls
+  rules:
+    - host: christianbarillas.mtexports.app
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: curriculum-oficial
+                port:
+                  number: 80

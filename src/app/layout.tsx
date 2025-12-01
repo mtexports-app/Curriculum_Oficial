@@ -19,6 +19,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { LanguageProvider } from "@/context/LanguageContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,13 +29,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.variable} ${outfit.variable} font-sans bg-black text-white antialiased selection:bg-blue-500/30`}>
-        <Navbar />
-        <main className="flex flex-col min-h-screen">
-          {children}
-        </main>
-        <footer className="py-8 text-center text-gray-600 text-sm">
-          © {new Date().getFullYear()} Christian Barillas. All rights reserved.
-        </footer>
+        <LanguageProvider>
+          <Navbar />
+          <main className="flex flex-col min-h-screen">
+            {children}
+          </main>
+          <footer className="py-8 text-center text-gray-600 text-sm">
+            © {new Date().getFullYear()} Christian Barillas. All rights reserved.
+          </footer>
+        </LanguageProvider>
       </body>
     </html>
   );
