@@ -1,10 +1,9 @@
-name: Deploy Curriculum to K8s
+name: Curriculum Oficial CI/CD - Kubernetes
 
 on:
   push:
     branches:
-      - main
-  workflow_dispatch:
+      - master
 
 jobs:
   # =======================================================
@@ -85,6 +84,7 @@ jobs:
       - name: Create or Update Kubernetes Secrets
         run: |
           # Crear secreto para acceder a GHCR (paquetes privados)
+          # Usamos --save-config y --dry-run para idempotencia
           kubectl create secret docker-registry regcred \
             --docker-server=ghcr.io \
             --docker-username=${{ github.actor }} \
